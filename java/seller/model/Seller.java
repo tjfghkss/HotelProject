@@ -1,21 +1,28 @@
 package seller.model;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 
 public class Seller {
 	private int num;
 	@Email(message="이메일 형태로 입력해주세요")
 	private String email;
 	
+	@NotEmpty(message="비밀번호를 입력해주세요")
 	private String password;
-	@NotNull(message="이름을 입력해주세요")
+	
+	@NotEmpty(message="이름을 입력해주세요")
 	private String name;
 	
-	@Pattern(regexp="^[0-9]+$")
+	@Pattern(regexp="^[0-9]+$", message="숫자만 입력해주세요")
+	@Size(min=10, max=11, message="전화번호양식에 부적합합니다")
 	private String phone;
+	
+	@Size(min=10, max=10, message="숫자 10자를 입력해주세요")
 	private String comnumber;
 	public int getNum() {
 		return num;
