@@ -15,7 +15,7 @@ public class HotelInsertController {
 	
 	@RequestMapping(command)
 	public String insert(HttpSession session) {
-		
+		String ha="hihihihih";
 		return getPage;
 	}
 }
