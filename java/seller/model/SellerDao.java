@@ -21,6 +21,27 @@ public class SellerDao {
 		int cnt = sqlSessionTemplate.insert(namespace + ".insertData",seller);
 		return cnt;
 	}
+
+	public Seller getDetails(String email, String password) {
+		Seller seller = new Seller();
+		seller.setEmail(email);
+		seller.setPassword(password);
+		// TODO Auto-generated method stub
+		Seller bean = sqlSessionTemplate.selectOne(namespace + ".getDetail", seller);
+		return bean;
+	}
+
+	public int infoUpdate(Seller seller) {
+		// TODO Auto-generated method stub
+		int cnt = sqlSessionTemplate.update(namespace + ".infoUpdate", seller);
+		return cnt;
+	}
+
+	public int deleteThis(int num) {
+		// TODO Auto-generated method stub
+		int cnt = sqlSessionTemplate.delete(namespace + ".deleteThis",num);
+		return cnt;
+	}
 	
 	
 	
