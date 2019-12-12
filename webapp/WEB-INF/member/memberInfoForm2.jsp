@@ -27,6 +27,7 @@
 </style>
 
 <script type="text/javascript">
+/* 탈퇴 시 비밀번호 확인 */
 function deleteMem() {
 	var popupX = (window.screen.width/2)-(500/2);
 	var popupY = (window.screen.height/2)-(200/2);
@@ -43,7 +44,9 @@ function deleteMem() {
 
 	function register() {
 
+		/* 비밀번호 체크 조건  */
 		var chk1 = /^[a-zA-Z0-9]{4,12}$/
+		/* 이메일 체크 조건  */
 		var chk2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		
 		var email = document.getElementById("m_email");
@@ -54,6 +57,7 @@ function deleteMem() {
 		var nickname = document.getElementById("m_nickname");
 		var phone = document.getElementById("m_phone");
 		
+		/**************** 유효성검사 ****************/
 		if (email.value=="") {
 			alert("이메일을 입력하세요")
 			email.focus();
@@ -162,10 +166,6 @@ function deleteMem() {
 									type="password" id="pwd2"
 									class="form-control" placeholder="Enter New Password">
 							</div>
-							
-								<!-- 	<div class="form-group" id="alert-success">비밀번호가 일치합니다.</div>
-									<div class="form-group" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
-									<div class="form-group" id="alert-danger2">현재 비밀번호와 일치합니다.</div> -->
 							
 							<div class="form-group">
 								<label for="exampleInputEmail1">Name</label> <input type="text"

@@ -3,11 +3,12 @@
     
 <script>
 function toSelMain(){
-	
-	location.href='selMain.sel';
-	
-	
+   
+   location.href='selMain.sel';
+   
+   
 }
+
 </script>
 <style>
 body {
@@ -24,8 +25,10 @@ input {
 span {
 float:left;
 }
+
 .title-wrapper {
-	margin: 80px auto;
+
+   margin: 80px auto;
     background: white;
     padding: 10px;
     box-shadow: 2px 2px 11px 2px grey;
@@ -33,16 +36,24 @@ float:left;
     text-align: center;
     border-radius:5px;
 }
+
 .form-wrapper {
-	padding:15px;
+   padding:15px;
 }
 .submitbtn {
-	border:none;
-	background:#0748ff;
-	color:white;
-	font-size:20px;
-	
+   border:none;
+   background:#0748ff;
+   color:white;
+   font-size:20px;
+   
 }
+
+
+
+
+
+
+
 </style>
 
 <div class="title-wrapper">
@@ -52,11 +63,12 @@ float:left;
 <div class="form-wrapper">
 <form action="selLogin.sel" method="post">
 
-	<span>이메일</span> <br><input type="text" name="email" ><br>
-	<span>비밀번호</span> <br><input type="password" name="password"><br>
-	<span class="wrong"></span><br>
-	<input class="submitbtn" type="submit" value="로그인"><br>
+   <span>이메일</span> <br><input type="text" name="s_email" ><br>
+   <span>비밀번호</span> <br><input type="password" name="s_password"><br>
+   <span class="wrong"></span><br>
+   <input class="submitbtn" type="submit" value="로그인"><br>
 
 </form>
 
+</div>
 </div>

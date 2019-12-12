@@ -28,7 +28,9 @@
 
 <script type="text/javascript">
 	function register() {
+		/* 비밀번호 체크 조건 */
 		var chk1 = /^[a-zA-Z0-9]{4,12}$/
+		/* 이메일 체크 조건 */
 		var chk2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		
 		var email = document.getElementById("m_email");
@@ -37,7 +39,7 @@
 		var nickname = document.getElementById("m_nickname");
 		var phone = document.getElementById("m_phone");
 		
-		
+		/**************** 유효성검사 ****************/
 		if (email.value=="") {
 			alert("이메일을 입력하세요")
 			email.focus();
