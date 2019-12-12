@@ -24,8 +24,8 @@ public class SellerDao {
 
 	public Seller getDetails(String email, String password) {
 		Seller seller = new Seller();
-		seller.setEmail(email);
-		seller.setPassword(password);
+		seller.setS_email(email);
+		seller.setS_password(password);
 		// TODO Auto-generated method stub
 		Seller bean = sqlSessionTemplate.selectOne(namespace + ".getDetail", seller);
 		return bean;

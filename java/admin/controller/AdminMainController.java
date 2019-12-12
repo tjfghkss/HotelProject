@@ -31,7 +31,7 @@ public class AdminMainController {
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
-		if (!adcheck.equals("admin@admin")) {
+		if (!adcheck.equals("admin@admin.com")) {
 			try {
 				session.invalidate();
 				PrintWriter writer = response.getWriter();

@@ -43,7 +43,7 @@ public class MemberLoginController {
 			mav.setViewName(getPage);
 			return mav;
 			
-		} else if (login.getM_email().equals("admin@admin")) {
+		} else if (login.getM_email().equals("admin@admin.com")) {
 			session.setAttribute("loginfo", login);
 			mav.setViewName(adPage);
 			

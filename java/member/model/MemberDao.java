@@ -36,4 +36,15 @@ public class MemberDao {
 		sqlSessionTemplate.update(namespace + ".update", member);
 	}
 
+	public Member checkMail(String m_email) {
+		Member check = sqlSessionTemplate.selectOne(namespace + ".checkMail", m_email);
+		
+		return check;
+	}
+
+	public void updatePw(Member member) {
+		sqlSessionTemplate.update(namespace + ".updatePw", member);
+		
+	}
+
 }

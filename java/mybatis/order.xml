@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order.model.Order">
+	<insert id="insertOrder">
+
+		insert into mainorder
+		values(o_seq.nextval,#{oemail},#{oname},
+		#{hname},sysdate,#{checkin},#{checkout},#{people},#{roomtype},#{totalprice},#{comments},'0')
+
+	</insert>
+
+	
+	<select id="getOrderList" resultType="MyOrder">
+		select o.o_checkin, o.o_checkout, o.o_orderdate, o.o_engname, o.o_people,
+		h.h_name, h.h_address1, h.h_address2, h.h_phone
+		from mainorder o, hotel h
+	</select>
+</mapper>

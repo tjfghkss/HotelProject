@@ -10,17 +10,19 @@
 		<typeAlias type="hotel.model.Hotel" alias="MyHotel"/>
 		<typeAlias type="seller.model.Seller" alias="MySeller"/>  
 		<typeAlias type="member.model.Member" alias="MyMember"/>
-<!-- 		<typeAlias type="hotel.model.Room" alias="MyRoom"/>
-		<typeAlias type="admin.model.Qna" alias="MyQna"/> -->
+ 		<typeAlias type="hotel.model.Room" alias="MyRoom"/>
+ 		<typeAlias type="order.model.Order" alias="MyOrder"/> 		
+<!-- 		<typeAlias type="admin.model.Qna" alias="MyQna"/>  -->
 		
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="mybatis/admin.xml"/>
-		<mapper resource="mybatis/hotel.xml"/>
-		<mapper resource="mybatis/member.xml"/>
-		<mapper resource="mybatis/seller.xml"/>
-<!-- 		<mapper resource="mybatis/room.xml"/> -->
+	<mapper resource="mybatis/member.xml"></mapper>
+      <mapper resource="mybatis/seller.xml"></mapper>
+      <mapper resource="mybatis/admin.xml"></mapper>
+      <mapper resource="mybatis/hotel.xml"></mapper>
+      <mapper resource="mybatis/room.xml"/>
+      <mapper resource="mybatis/order.xml"/>
 	</mappers>
 
 </configuration>
