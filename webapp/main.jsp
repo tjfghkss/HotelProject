@@ -83,6 +83,15 @@ body{
 	text-shadow: 3px 3px 10px #000;
 }
 
+.logo {
+	width: 100px;
+	height: 100px;
+}
+
+.adv {
+	width: 400px;
+	height: 100px;
+}
 </style>
 <script type="text/javascript" src="resources/jquery/jquery.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
@@ -255,7 +264,7 @@ function logout() {
 	    
 <header class="main-menu">
 		<a href="main.jsp" class="main">
-			<img id="logo" src="resources/img/로고.jpg"/>
+			<img class="logo" src="resources/img/loooo.png"/>
 		</a> 
 		<c:if test="${sessionScope.loginfo == null }">
 			<a class="main-login" href="register.mem" style="float:right; margin:20px;">회원가입</a>
@@ -389,9 +398,10 @@ function logout() {
 		</div>
 	</div>
 </div>
-	
-<div class="adv">
-	<img src="resources/img/광고.jpg"/>
+
+
+<div class="advdiv">
+	<img class="adv" src="resources/img/광고.jpg"/>
 </div>	
 
 	
@@ -405,7 +415,7 @@ function logout() {
 	 	
 	 		<div class="foot">
 		<div class="logo">
-			<img src="">
+			<img class="logo" src="resources/img/loooo.png"/>
 		</div>
 		
 		<div class="companyInfo">
