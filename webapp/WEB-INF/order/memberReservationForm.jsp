@@ -6,10 +6,10 @@
 
 
 <script type="text/javascript">
-	$(function() {
+/* 	$(function() {
 		$('#reviewComplete').hide();
 	})
-
+ */
 	function pushLayer() {
 		$('#myModal').show();
 	}
@@ -22,14 +22,16 @@
 			url : "review.mem",
 			type : "POST",
 			data : { "o_num" : $("#o_num").val(),
-				"r_comment" : $("#r_comment").val(),
-				"r_star" : $("#r_star").val()},
+				"h_num" : $("#h_num").val(),
+				"c_comment" : $("#c_comment").val(),
+				"c_star" : $("#c_star").val()},
 			success : function(data) {
 				alert("후기 작성완료");
 				$('#myModal').hide();
-				
+				location.reload();
+/* 				
 				$('#review').hide();
-				$('#reviewComplete').show();
+				$('#reviewComplete').show(); */
 
 			},
 			error : function(data) {
@@ -144,7 +146,7 @@ h4 {
 }
 </style>
 
-<div class="total-container">
+<div class="total-container" id="total-container">
 	<h2 class="bigtitle">예약 조회</h2>
 	<hr>
 
@@ -153,8 +155,7 @@ h4 {
 	<c:set var="ho" value="${totalOrder.list[0].hotel }" />
 	<c:set var="ro" value="${totalOrder.list[1].room }" />
 	<c:set var="od" value="${totalOrder.list[2].odetail }" />
-
-
+	
 	<c:forEach items="${mainOrderd }" var="mo">
 		<c:set var="loop_flag" value="false" />
 		<table class="table-wrapper">
@@ -173,6 +174,8 @@ h4 {
 										<tr>
 											<td><span class="hoteltype">${ho[k].h_type }</span>
 												<h4>
+												<input type="hidden" name="h_num" class="h_num" id="h_num"
+					value="${ho[k].h_num }">
 													<a class="totitle"
 														href="hotelDetail.ho?h_num=${ho[k].h_num }">${ho[k].h_name }</a>
 												</h4></td>
@@ -204,31 +207,40 @@ h4 {
 				<td>결제일자 : ${mo.o_orderdate }</td>
 			</tr>
 			<tr>
-				<td><c:if test="${mo.o_checker == 0}">
+				<td>
+					<c:if test="${mo.o_checker == 0}">
 						<button class="button" type="button" id="cancel">결제취소</button>
-					</c:if> <c:if test="${mo.o_checker == 1}">
-						<button class="review" type="button" id="review"
+					</c:if> 
+					
+					<c:if test="${mo.o_checker == 1}">
+						<c:if test="${mo.o_reviewchecker == 0 }">
+							<button class="review" type="button" id="review"
 							onclick="pushLayer()">후기쓰기</button>
-						<button class="reviewComplete" type="button" id="reviewComplete">후기
+						</c:if>
+						<c:if test="${mo.o_reviewchecker == 1 }">
+							<button class="reviewComplete" type="button" id="reviewComplete">후기
 							작성 완료</button>
-					</c:if></td>
+						</c:if>
+					</c:if>
+				</td>
 			</tr>
 		</table>
 		<div id="myModal" class="myModal">
 			<div class="modal-content">
 				<input type="hidden" name="o_num" class="o_num" id="o_num"
 					value="${mo.o_num }">
+				
 				<div class="col-md-12 text-center">
-					<h1>${ho[k].h_name }Review</h1>
+					<h1>Review</h1>
 				</div>
 				<form name="reviewForm" id="reviewForm">
 					<div class="form-group">
-						<label for="r_star">평점</label> <input type="text" name="r_star"
-							class="r_star" id="r_star"> / 5
+						<label for="c_star">평점</label> <input type="text" name="c_star"
+							class="c_star" id="c_star"> / 5
 					</div>
 					<div class="form-group">
-						<label for="r_comment">후기</label> <input type="text"
-							name="r_comment" id="r_comment" class="r_comment">
+						<label for="c_comment">후기</label> <input type="text"
+							name="c_comment" id="c_comment" class="c_comment">
 					</div>
 					<div class="submit">
 						<button class="review" type="button" id="reviewbtn"
