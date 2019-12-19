@@ -6,8 +6,12 @@
 <mapper namespace="member.model.Review">
 	
 	<insert id="writeReview">
-		insert into review values
-		(c_seq.nextval, #{m_num}, #{o_num}, #{r_comment}, #{r_star}, #{r_checker})
+		insert into review (c_num, m_num, o_num, c_comment, c_star, c_checker, h_num)
+		values (c_seq.nextval, #{m_num}, #{o_num}, #{c_comment}, #{c_star}, #{c_checker}, #{h_num})
 	</insert>
 	
+	<select id="getReviewList" resultType="MyReview">
+		select * from review
+		where h_num = #{h_num}
+	</select>
 </mapper>

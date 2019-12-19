@@ -39,4 +39,8 @@
 		update members set m_password=#{m_password}
 		where m_email=#{m_email}
 	</update>
+	
+	<select id="getAllMembers" resultType="MyMember">
+		select * from members
+	</select>
 </mapper>
