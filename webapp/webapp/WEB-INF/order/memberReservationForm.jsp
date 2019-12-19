@@ -10,6 +10,8 @@
 		$('#reviewComplete').hide();
 	})
  */
+
+	 
  
  	var selectedIdx = -1;
  
@@ -17,24 +19,42 @@
 		$('#myModal').show();
 		
 		selectedIdx = parseInt(target.getAttribute("idx"));
-		alert(selectedIdx);
 		var n=selectedIdx;
-		var o_num = $(".o_num:nth-child(n)").val();
+		/*  alert(n);  */
 		
-		alert (o_num);
+		var a = document.getElementsByClassName("o_num");
+		var c = document.getElementsByClassName("h_num");
+	
+	
+/* 		 alert(a[n].value);    */
+		
+		var b = parseInt(a[n].value);
+		var d = parseInt(c[n].value);
+		
+		this.b = b;
+		this.d = d;
+		
 	}
+	  
 
 	function review() {
+		var that = this;
+		/* alert(that.b); */
+		var star = document.getElementById("c_star");
+		var comment = document.getElementById("c_comment");
 		
+		if(star.value < 0 || star.value > 5) {
+			alert("평점은 0~5사이의 숫자로 입력해주세요")
+			star.focus();
+			return false;
+		}		
 		
-		
-		/* var formData = $("#myModal").serialize(); */
 		$.ajax({
 			cache : false,
 			url : "review.mem",
 			type : "POST",
-			data : { "o_num" : o_num,
-				"h_num" : $("#h_num").val(),
+			data : { "o_num" : that.b,
+				"h_num" : that.d,
 				"c_comment" : $("#c_comment").val(),
 				"c_star" : $("#c_star").val()},
 			success : function(data) {
@@ -50,15 +70,14 @@
 				alert("후기작성 오류");
 			}
 		});
+
 	}
-	
 	
 	//팝업 Close 기능
 	function close_pop(flag) {
 		$('#myModal').hide();
 	};
 
-	
 	
 	
 </script>
@@ -174,7 +193,8 @@ h4 {
 		<table class="table-wrapper">
 			<tr>
 				<td>
-					<input type="hidden" name="o_num" class="o_num" value="${mo.o_num }">
+					<input type="hidden" class="o_num" value="${mo.o_num }">
+					<input type="text" class="s_o_num" value="${mo.o_num }">
 					<c:if test="${mo.o_checker == 0}">
 						<span class="waitcheckin">예약확정</span>
 					</c:if> <c:if test="${mo.o_checker == 1}">숙박완료</c:if></td>
@@ -229,7 +249,7 @@ h4 {
 					
 					<c:if test="${mo.o_checker == 1}">
 						<c:if test="${mo.o_reviewchecker == 0 }">
-							<button  idx="${stt.index }" class="review" type="button" id="review"
+							<button idx="${stt.index }" class="review" type="button" id="review"
 							onclick="pushLayer(this)">후기쓰기</button>
 						</c:if>
 						<c:if test="${mo.o_reviewchecker == 1 }">
@@ -261,7 +281,7 @@ h4 {
 					</div>
 					<div
 						style="cursor: pointer; background-color: #DDDDDD; text-align: center; padding-bottom: 10px; padding-top: 10px;"
-						onClick="close_pop();">
+						onClick="close_pop()">
 						<span class="pop_bt" style="font-size: 13pt;"> 닫기 </span>
 					</div>
 				</form>
