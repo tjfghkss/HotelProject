@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 public class OrderDao {
 	private String namespace = "order.model.Order";
 	
+	
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
@@ -19,10 +20,17 @@ public class OrderDao {
 		return cnt;
 	}
 
-	public List<Order> getOrderList(int m_num) {
-		List<Order> lists = sqlSessionTemplate.selectList(namespace + ".getOrderList", m_num);
-		return lists;
+	public List<Order> getOrderList() {
+		// TODO Auto-generated method stub
+		List <Order> orderlist = sqlSessionTemplate.selectList(namespace+".getorderlist");
+		return orderlist;
 	}
 
+	public int changeChecking(int onum) {
+		// TODO Auto-generated method stub
+		int cnt = sqlSessionTemplate.update(namespace + ".changeChecking",onum);
+		return cnt;
+	}
+	
 
 }
