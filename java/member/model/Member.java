@@ -1,10 +1,5 @@
 package member.model;
 
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
 
 public class Member {
 	private int m_num;

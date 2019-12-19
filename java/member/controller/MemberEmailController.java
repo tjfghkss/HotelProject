@@ -24,6 +24,12 @@ public class MemberEmailController {
 	private final String getPage = "findPwForm";
 	private final String goPage = "redirect:/main.jsp";
 	
+	private static int count = 0;
+	
+	public MemberEmailController() {
+		count++;
+		System.out.println("MemberEmailController ====== 생성됨....... : "  + count);
+	}
 	
 	@Autowired
 	private JavaMailSender mailSender;
