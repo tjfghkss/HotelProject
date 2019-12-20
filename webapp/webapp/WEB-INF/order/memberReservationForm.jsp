@@ -4,6 +4,23 @@
 
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script src="http://code.jquery.com/jquery-1.12.0.js"></script>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script
+	src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+	rel="stylesheet">
+<link
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
+
 
 <script type="text/javascript">
 /* 	$(function() {
@@ -82,30 +99,6 @@
 	
 </script>
 <style>
-
-/* The Modal (background) */
-.myModal {
-	display: none; /* Hidden by default */
-	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
-	left: 0;
-	top: 0;
-	width: 100%; /* Full width */
-	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
-	background-color: rgb(0, 0, 0); /* Fallback color */
-	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-	background-color: #fefefe;
-	margin: 15% auto; /* 15% from the top and centered */
-	padding: 20px;
-	border: 1px solid #888;
-	width: 30%; /* Could be more or less, depending on screen size */
-}
-
 body {
 	margin: 0;
 	padding: 0;
@@ -175,6 +168,85 @@ h4 {
 	color: white;
 	padding: 3px;
 }
+
+/************** 후기 팝업 **************/
+/* The Modal (background) */
+.myModal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(203, 220, 247, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+	background-color: rgb(203, 220, 247);
+	margin: 15% auto; /* 15% from the top and centered */
+	/* padding: 20px; */
+	border: 1px solid #888;
+	width: 40%; /* Could be more or less, depending on screen size */
+}
+
+.c_comment {
+	width: 100%;
+	height: 150px;
+	border-radius: 10px;
+	border: solid cornflowerblue;
+	word-break:break-all;	
+}
+
+.c_star {
+	width: 15%;
+	border-radius: 5px;
+	border: solid cornflowerblue;
+}
+
+.form-group-star {
+	float: right;
+	padding: 10px;
+	text-align: right;
+}
+
+.form-group-comment {
+	padding: 20px;
+}
+
+.submit-review1 {
+	cursor: pointer;
+	background-color: lightgreen;
+	text-align: center;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	float:left;
+	margin-left:20%;
+}
+
+.submit-review2 {
+	cursor: pointer;
+	background-color: palevioletred;
+	text-align: center;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	float:right;
+	margin-right: 20%;
+}
+
+.btn btn-block mybtn btn-primary tx-tfm {
+	border-radius: .90rem;
+	border: solid cornflowerblue;
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+}
+
+.col-md-12 text-center {
+	float: left;
+}
 </style>
 
 <div class="total-container" id="total-container">
@@ -186,15 +258,13 @@ h4 {
 	<c:set var="ho" value="${totalOrder.list[0].hotel }" />
 	<c:set var="ro" value="${totalOrder.list[1].room }" />
 	<c:set var="od" value="${totalOrder.list[2].odetail }" />
-	
+
 	<c:forEach items="${mainOrderd }" var="mo" varStatus="stt">
-				
+
 		<c:set var="loop_flag" value="false" />
 		<table class="table-wrapper">
 			<tr>
-				<td>
-					<input type="hidden" class="o_num" value="${mo.o_num }">
-					<input type="text" class="s_o_num" value="${mo.o_num }">
+				<td><input type="hidden" class="o_num" value="${mo.o_num }">
 					<c:if test="${mo.o_checker == 0}">
 						<span class="waitcheckin">예약확정</span>
 					</c:if> <c:if test="${mo.o_checker == 1}">숙박완료</c:if></td>
@@ -209,9 +279,8 @@ h4 {
 										<tr>
 											<td><span class="hoteltype">${ho[k].h_type }</span>
 												<h4>
-												<input type="hidden" name="h_num" class="h_num" id="h_num"
-					value="${ho[k].h_num }">
-													<a class="totitle"
+													<input type="hidden" name="h_num" class="h_num" id="h_num"
+														value="${ho[k].h_num }"> <a class="totitle"
 														href="hotelDetail.ho?h_num=${ho[k].h_num }">${ho[k].h_name }</a>
 												</h4></td>
 										</tr>
@@ -242,54 +311,89 @@ h4 {
 				<td>결제일자 : ${mo.o_orderdate }</td>
 			</tr>
 			<tr>
-				<td>
-					<c:if test="${mo.o_checker == 0}">
+				<td><c:if test="${mo.o_checker == 0}">
 						<button class="button" type="button" id="cancel">결제취소</button>
-					</c:if> 
-					
-					<c:if test="${mo.o_checker == 1}">
+					</c:if> <c:if test="${mo.o_checker == 1}">
 						<c:if test="${mo.o_reviewchecker == 0 }">
-							<button idx="${stt.index }" class="review" type="button" id="review"
-							onclick="pushLayer(this)">후기쓰기</button>
+							<button idx="${stt.index }" class="review" type="button"
+								id="review" onclick="pushLayer(this)">후기쓰기</button>
 						</c:if>
 						<c:if test="${mo.o_reviewchecker == 1 }">
 							<button class="reviewComplete" type="button" id="reviewComplete">후기
-							작성 완료</button>
+								작성 완료</button>
 						</c:if>
-					</c:if>
-				</td>
+					</c:if></td>
 			</tr>
 		</table>
 	</c:forEach>
-		<div id="myModal" class="myModal">
+	 <div id="myModal" class="myModal">
 			<div class="modal-content">
 				<div class="col-md-12 text-center">
-					<h1>Review</h1>
-				</div>
-				<form name="reviewForm" id="reviewForm">
-					<div class="form-group">
+					<h2 style="text-align:center;">방문 후기</h2>
+				</div> 
+				<!-- <button type="button" class="btn btn-outline-dark" onclick="close_pop()">X</button> -->
+				<form name="reviewForm" id="reviewForm" class="reviewForm">
+					<div class="form-group-star">
 						<label for="c_star">평점</label> <input type="text" name="c_star"
 							class="c_star" id="c_star"> / 5
 					</div>
-					<div class="form-group">
-						<label for="c_comment">후기</label> <input type="text"
-							name="c_comment" id="c_comment" class="c_comment">
+					<div class="form-group-comment">
+						<label for="c_comment">후기</label> <!-- <input type="text"
+							name="c_comment" id="c_comment" class="c_comment" > -->
+							
+						<textarea rows="40" cols="10" name="c_comment" id="c_comment" class="c_comment" wrap="hard"
+						placeholder="여러분의 솔직한 후기를 환영합니다"></textarea>  
 					</div>
-					<div class="submit">
-						<button class="review" type="button" id="reviewbtn"
+					<!-- <div class="submit-review">
+						<button class="review-btn" type="button" id="reviewbtn"
 							onclick="review()">작성하기</button>
+					</div> -->
+					<div class="submit-review1" onClick="review()">
+						<span class="review_bt" style="font-size: 13pt;"> &nbsp;&nbsp;작성하기&nbsp;&nbsp; </span>
 					</div>
-					<div
-						style="cursor: pointer; background-color: #DDDDDD; text-align: center; padding-bottom: 10px; padding-top: 10px;"
-						onClick="close_pop()">
-						<span class="pop_bt" style="font-size: 13pt;"> 닫기 </span>
+					
+					<div class="submit-review2" onClick="close_pop()">
+						<span class="pop_bt" style="font-size: 13pt;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;닫기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
 					</div>
 				</form>
+			</div>  
+		</div>
+	<!-- <div id="myModal" class="myModal">
+		<div class="modal-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-5 mx-auto">
+						<div id="first">
+							<div class="myform form ">
+								<div class="logo mb-3">
+									<div class="col-md-12 text-center">
+										<h2>방문 후기</h2>
+									</div>
+								</div>
+								<form name="loginForm" id="loginForm">
+									<div class="form-group-star">
+										<label for="c_star">평점</label> <input type="text"
+											name="c_star" class="c_star" id="c_star"> / 5
+									</div>
+									<div class="form-group-comment">
+										<label for="c_comment">후기</label> <input type="text"
+											name="c_comment" id="c_comment" class="c_comment">
+									</div>
+									<div class="col-md-12 text-center " style="float:left;">
+										<button type="button" id="btnLogin" onclick="review()"
+											class=" btn btn-block mybtn btn-primary tx-tfm">작성</button>
+									</div>
+
+									<div class="col-md-12 text-center ">
+										<button type="button" id="btnLogin" onclick="close_pop()"
+											class=" btn btn-block mybtn btn-primary tx-tfm">닫기</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-
-
-
-
-
+	</div> -->
 </div>
