@@ -23,7 +23,6 @@
 	.btn-primary{
 		background-color : #0000ac;
 	}
-
 </style>
 
 <!-- <script type="text/javascript">
@@ -46,7 +45,6 @@
 			}
 		});
 	}
-
 </script> -->
 
 

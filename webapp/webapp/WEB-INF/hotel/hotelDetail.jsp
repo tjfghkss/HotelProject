@@ -72,7 +72,6 @@
 				$('input.adult').attr('value', ori+i);
 				
 				
-
 			});
 			
 			$('#plus').click(function(){
@@ -149,6 +148,8 @@
 		
 		 $("#datepicker").datepicker(); 
 		 $("#datepicker2").datepicker();
+		 $("#datepicker3").datepicker(); 
+		 $("#datepicker4").datepicker();
 		 
 		 
 		//********Room price picker *****************************************************************
@@ -210,27 +211,11 @@
 			$('input.totalprice').attr('value',total);
 			$('.totalprice1').append(
 					'<div class="totalreservate">'+total+'원'+
-					'<br><input type="hidden" name="whichrooms" value="'+roomname+'">'+
-					'<br><input type="hidden" name="howmanyrooms" value="'+getHowmany+'">'+
+					'<br><input type="text" name="whichrooms" value="'+roomname+'">'+
+					'<br><input type="text" name="howmanyrooms" value="'+getHowmany+'">'+
 					'<br><a>세금 및 기타 요금 포함</a>'+
 					'<ul><li>즉시 예약 확정</li><li>가입이 필요 없습니다</li><li>예약 수수료, 신용카드 수수료 없음!</li></ul>'+
 					'<button class="reservatebtn" onclick="javascript:reservate()" >예약하기</button></div>');
-			
-			
-			
-			
-			
-			
-			
-			
-		//******************************예약하기 창으로 방 이름  넘기기********************************************
-			
-			
-				
-			
-			
-		
-			
 			
 			
 			
@@ -250,11 +235,9 @@
 		
 	
 		
-
 	});
 </script>
 <script type="text/javascript">
-
 		function reservate(){
 			$('form[name=roomreservate]').submit();
 			
@@ -302,11 +285,48 @@
 		        
 		        	
 		    }
-
-
-
-
 </script>
+<script type="text/javascript">
+function pushLayer() {
+	$('#myModal').show();
+};
+function close_pop(flag) {
+	$('#myModal').hide();
+};
+function toSearch() {
+	var checkin = $('#datepicker3').val();
+	var checkout = $('#datepicker4').val();
+	var adult = $('.madult').val();
+	var child = $('.mchild').val();
+	var room = $('.mroom').val();
+	location.href="Search.ho?checkin="+checkin+"&checkout="+checkout+"&adult="+adult+"&child="+child+"&room="+room+"";
+};
+</script>
+<style type="text/css">
+.myModal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+/* Modal Content/Box */
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 30%; /* Could be more or less, depending on screen size */
+}
+.pop_bt{
+	float:right;
+}
+</style>
 <style>
 body {
 	margin:0;
@@ -314,7 +334,6 @@ body {
 .total-container{
 	margin:30px 300px;
 }
-
 h1{
 	display: inline-block;
 }
@@ -342,7 +361,6 @@ h1{
 		margin:auto;
 		padding:15px;
 	}
-
 	#hoteloptions{
 		width: 95%;
 		margin:20px;
@@ -371,7 +389,6 @@ h1{
 /* 	margin-left: 30px; */
 	float:left;
 }
-
 .calc {
 	border: 2px solid #ff6b09;
     background: white;
@@ -379,7 +396,6 @@ h1{
     margin: 10px;
     border-radius: 5px;	
 }
-
 .mainsubmitbtn{
     border: none;
     background: #040cf1;
@@ -402,7 +418,6 @@ background: #ffe0b1;
     margin: 15px;
 	
 }
-
 .leftsearch-form {
 	text-align: center;
 	padding: 10;
@@ -414,34 +429,44 @@ h4 {
     padding: 9px;
     border-radius: 5px;
 }
-
 .register-wrap {
 	margin: 20px;
 }
-
 /******register  부터 **********************************************/
 .register-check {
 	border: 1px solid #ababab;
     width: 100%;
     border-radius: 5px;
 }
-
 .register-check td {
     border-right: 1px solid #d4d4d4;
-    width:33.33333%;
+    width: 26.33333%;
 }
 .register-check-last {
 	border-right: none !important;
 	
 }
-
+.infochangebtn{
+	    border: none;
+    background: none;
+    color: blue;
+    text-decoration: underline;
+    font-size: 20px;
+}
+.infoAllbtn{
+	width: 50%;
+    margin: 30px;
+    border: none;
+    background: blue;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+}
 /******register table   부터 **********************************************/
 table {
     width: 100%;
 }
-
-
-
 .rtype {
 	width: 25%;
     
@@ -450,7 +475,6 @@ table {
 	width: 10%;
 	
 }
-
 .rprice, .rselect{
 	width:20%;
 	
@@ -467,15 +491,12 @@ table {
 	font-size:10px;
 	color:green;
 }
-
-
 .totalreservate {
 	position: relative;
     background: #90bcff96;
     padding: 10px;
     margin: 10px;
 }
-
 .reservatebtn {
 	    border: none;
     background: #0000ca;
@@ -484,14 +505,14 @@ table {
     border-radius: 5px;
     width: 100%;
 }
-
-
+.material-icons{
+	font-size:15px;
+}
 /************************right bar 의 comment     wrapper   **********************************/
 .hotelComment-table{
 	 width: 98%;
     margin: auto;
 }
-
 .hotelComment-table tbody{
 	    width: 100%;
 }
@@ -510,7 +531,6 @@ table {
     width:68%;
    
 }
-
 #hotelcomment{
 		/* background-color: #4587ffb0; */
 	display:inline-block;
@@ -522,7 +542,6 @@ table {
 .rightbox-hotel-wrapper{
 	width:100%;
 	
-
 }
 .rightbox-comments{
     width: 30%;
@@ -544,7 +563,6 @@ table {
     margin: auto;
     text-align: center;
 }
-
 .rightbox-btn {
 	    background: #0000c7;
     border: none;
@@ -558,7 +576,6 @@ table {
 .rightbar-selectbox{
     list-style: none;
     width: 100%;
-
     margin: auto;
         padding: 0;
     text-align: center;
@@ -569,10 +586,7 @@ table {
     display: inline-block;
         width: 24%;
 }
-
 /*********************상단부 select******/
-
-
 .rightbar-selectbtn{
 	border: none;
     background: #d2deff;
@@ -581,18 +595,11 @@ table {
     font-size: 20px;
     border-left: 1px solid white;
 }
-
-
-
-
-
 /************************detail    wrapper   **********************************/
 .hoteloption-list{
 	width:95%;
 	margin:auto;
-
 }
-
 .detail-wrapper{
     display: inline-block;
     width: 100%;
@@ -608,19 +615,13 @@ table {
     list-style:none;
     
 }
-
 .famous-wrapper-title{
 	font-size: 23px;
 }
-
-
-
 /***************하우스 룰****************/
 .houserule-wrapper{
     width: 95%;
     margin: auto;
-
-
 }
 .houserule-title{
 	font-size:20px;
@@ -634,7 +635,6 @@ table {
 	background: #abd5ffa8;
     border-radius: 5px;
     padding: 10px;
-
 }
 .houserule-titles{
 	width:20%;
@@ -679,8 +679,6 @@ table {
 	 background-size: contain;
 	 height: 25px;
 }
-
-
 /****search 부분 ******/
 .adultselect {
     width: 80%;
@@ -698,18 +696,14 @@ table {
     border-radius: 5px;
     font-size: 13px;
 }
-
 .searchinputSpan {
 	font-size: 12px;
 }
-
 .inputbox {
  padding: 8px;
     border: none;
     border-radius: 5px;
 }
-
-
 /******    *리뷰 **************/
 .review-wrapper{
 	    width: 95%;
@@ -717,17 +711,6 @@ table {
     margin: 20px auto;
     padding: 10px;
 }
-
-
-
-
-
-
-
-
-
-
-
 	
 </style>
 </head>
@@ -852,6 +835,81 @@ table {
 			});    
 		</script>
 		</div>
+		
+		
+		
+		<div id="myModal" class="myModal">
+			<div class="modal-content">
+				<span onclick="close_pop()" class="pop_bt" style="font-size: 13pt;">x</span>
+				
+				<div class="col-md-12 text-center">
+					<h1>검색 하기</h1>
+				</div>
+				<form name="reviewForm" id="reviewForm">
+					<p class="searcharea-p scheduler">
+						<span class="searchinputSpan">체크인 날짜:</span>
+						<input class="inputbox"  name="checkin" type="text" id="datepicker3" placeholder="체크인" value="${param.checkin }">
+						<br>
+							<span class="searchinputSpan">체크아웃 날짜:</span>
+							<input class="inputbox"  name="checkout" type="text" id="datepicker4" placeholder="체크아웃" value="${param.checkout }">
+					</p>
+					
+					<div class="perbox-box">
+							<div>
+								
+									<select class="adultselect">
+									<c:forEach begin="1" end="20" var="p">
+										
+										<option class="madult" value="${p }" <c:if test="${param.adult == p }">selected</c:if>>성인: ${p }명
+									
+									</c:forEach>
+									
+									</select>
+								
+								
+							</div>
+							<div>
+								
+									<select class="crselect">
+									<option <c:if test="${param.child == 0 }">selected</c:if>>아동 없음
+									<c:forEach begin="1" end="20" var="p">
+										
+										<option class="mchild" value="${p }" <c:if test="${param.child == p }">selected</c:if>>아동: ${p }명
+									
+									</c:forEach>
+									
+									</select>
+									
+								
+							
+							
+									<select class="crselect">
+									
+									<c:forEach begin="1" end="20" var="p">
+										
+										<option class="mroom" value="${p }" <c:if test="${param.room == p }">selected</c:if>>객실: ${p }개
+									
+									</c:forEach>
+									
+									</select>
+								
+								
+								
+							</div>
+						</div>
+					
+					
+					
+					
+					
+					<div
+						style="cursor: pointer; background-color: #DDDDDD; text-align: center; padding-bottom: 10px; padding-top: 10px;"
+						onClick="toSearch();"><span>검색</span>
+						
+					</div>
+				</form>
+			</div>
+		</div>
 	
 	
 	
@@ -906,8 +964,9 @@ table {
 					<a>${hotel.h_nation } 추천 숙소</a><br>
 			
 					<div>
-				
-					${hotel.h_comment }
+					<pre class="commentboxxx">
+						${hotel.h_comment }
+					</pre>
 					</div> 
 				</div>
 			</td>
@@ -962,14 +1021,15 @@ table {
 			<tr>
 				<td>
 					<p>체크인</p>
-					<p>${param.checkin }</p>
+					<p><button class="infochangebtn" onclick="pushLayer()">${param.checkin }</button></p>
 				
 				</td>
 				<td>
 					<p>체크아웃</p>
-					<p>${param.checkout }</p>
+					<p><button class="infochangebtn" onclick="pushLayer()">${param.checkout }</button></p>
 				</td>
-				<td class="register-check-last"><p>성인 : ${param.adult }</p><p>아이 : <c:if test="${param.child ==0 }">0</c:if><c:if test="${param.child !=0 }">${param.child }</c:if></p></td>
+				<td><p>성인 : ${param.adult }</p><p>아이 : <c:if test="${param.child ==0 }">0</c:if><c:if test="${param.child !=0 }">${param.child }</c:if></p></td>
+				<td class="register-check-last"><button class="infoAllbtn" onclick="pushLayer()">검색 변경</button></td>
 			
 			
 			</tr>
@@ -1025,13 +1085,27 @@ table {
 						<li>난방 시설</li>
 						<li>에어컨</li>
 						<li>타월</li>
-						<li>슬리퍼</li>
+						<li>슬리퍼&&&</li>
+					
+
 						</ul>
 				</td>
-				<td class="rperson">${room.r_person }</td>
+				<td class="rperson">
+				
+					<c:if test="${room.r_person == 2 }"><i class="material-icons">person</i><i class="material-icons">person</i></c:if>
+					<c:if test="${room.r_person == 3 }"><i class="material-icons">person</i><i class="material-icons">person</i><i class="material-icons">person</i></c:if>
+					<c:if test="${room.r_person == 4 }"><i class="material-icons">person</i><i class="material-icons">person</i><i class="material-icons">person</i><i class="material-icons">person</i></c:if>
+					<c:if test="${room.r_person > 4 }"><i class="material-icons">person</i> X ${room.r_person }</c:if>
+				
+				
+				
+				
+				
+				</td>
 				<td class="rprice"><input type="hidden" class="r_price-${r.index }" name="r_price" value="${room.r_price }">${room.r_price }</td>
 				<td class="rselect">
-					<select class="selectroom" >
+				
+				 	<%-- <select class="selectroom" >
 						<option selected value="0">0
 					<c:forEach begin="0" end="${room.r_stock }" varStatus="i"> 
 						
@@ -1042,7 +1116,52 @@ table {
 					
 						<option value="${price * namy  }">${i.count }&nbsp;(${price * namy })
 					</c:forEach>
+					</select>  --%>
+					
+					
+					
+					
+					
+				<c:set value="${map }" var="count"/>
+				
+				<select class="selectroom" >
+						<option selected value="0">0
+					<c:if test="${room.r_stock - count[room.r_num] <=0 }">
+					
+					
+					
+						<option value="0">객실 없음
+					
+					</c:if>
+					<c:if test="${room.r_stock - count[room.r_num] >0 }">
+					
+					<c:forEach begin="0" end="${room.r_stock - count[room.r_num] }" varStatus="i"> 
+						
+						<c:set var="price" value="${room.r_price }" />
+						<fmt:formatNumber value="${price}" type="number" var="numberType" />
+						<c:set var="namy" value="${i.count }" />
+						<fmt:formatNumber value="${namy}" type="number" var="numberType" />
+					
+						<option value="${price * namy  }">${i.count }&nbsp;(${price * namy })
+					</c:forEach>
+					</c:if>
 					</select>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					 
+					
+					
+					
+					
+					
+					
 				</td>
 				<td class="rtotal">
 					
@@ -1262,22 +1381,26 @@ table {
 	
 	
 	
-	<!-- 후기  -->
+	
 	
 
 	
 	<div class="review-wrapper">
 	
-	<c:forEach items="${review }" var="rv">
+	
+	
+	
+		<c:forEach items="${review }" var="rv">
+		<input type="hidden" name="c_num" class="c_num" value="${rv.c_num }">
 		<h3>이용 후기</h3>
 		<table>
 			<tr>
 				<td colspan="2">
-					<div>후기 작성일:</div>
+					<div>후기 작성일 ${rv.c_date }</div>
 				</td>
 			</tr>
 			<tr>
-				<td>닉네임</td>
+				<td>닉네임 ${rv.m_nickname }</td>
 				<td>
 					<div>평점 ${rv.c_star }</div>
 					<div>작성내용 ${rv.c_comment }</div>
@@ -1288,17 +1411,24 @@ table {
 				</td>
 				
 			</tr>
-			
+
 			<tr>
 				<td colspan="2">
-					<div>투숙한 방 타입</div>
-					<div>숙박일</div>
+				
+					<div>투숙한 방 타입 
+						${rv.r_type }
+					</div>
+				
+					<div>숙박일 ${rv.o_checkin } ~ ${rv.o_checkout }</div>
 				</td>
 			</tr>
 		
 		</table>
 		
 		</c:forEach>
+		
+		
+		
 		
 		
 		
